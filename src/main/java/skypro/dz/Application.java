@@ -3,88 +3,62 @@ package skypro.dz;
 
 
 import skypro.dz.Dao.EmloyeeDAO;
-import skypro.dz.Dao.EmployeeDAOImpl;
 
-import java.sql.*;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args)  {
 
+    public static void main(String[] args) {
 
+        EmployeeService employeeService = new EmployeeService();
+
+        task1(employeeService);
+        task2(employeeService);
+        task3(employeeService);
+        task4(employeeService);
+        task5(employeeService);
 
     }
 
+    //Получение конкретного объекта Employee по id
+    public static void task1(EmployeeService employeeService) {
+        System.out.println("Получение конкретного объекта Employee по id");
+        Long id = 3L;
+        Employee employee = employeeService.findById(id);
+        System.out.println("Employee found with id " + id + " is =>" + employee.toString());
+    }
 
-    public static void task1() {
-        final String user = "postgres";
-        final String password = "08051992";
-        final String url = "jdbc:postgresql://localhost:5432/skypro";
-        int id = 3;
+    //Создание (добавление) сущности Employee в таблицу
+    public static void task2(EmployeeService employeeService) {
+        System.out.println("Создание (добавление) сущности Employee в таблицу");
+        Employee employee = new Employee("Peter", "O'Relly", "male", 44, 2L);
+        employeeService.addNewEmployee(employee);
+    }
 
+    //Изменение конкретного объекта Employee в базе по id
+    public static void task3(EmployeeService employeeService) {
+        System.out.println("Изменение конкретного объекта Employee в базе по id");
+        Long id = 3L;
+        Employee updateEmployeeById = employeeService.findById(id);
+        updateEmployeeById.setAge(22);
+        employeeService.updateById(updateEmployeeById);
+    }
 
-        try (Connection connection =
-                     DriverManager.getConnection(url, user, password);
-             PreparedStatement statement =
-                     connection.prepareStatement("SELECT id, firstname, lastname, gender, age, city_name " +
-                             "FROM employee " +
-                             "LEFT JOIN city ON employee.city_id = city.city_id " +
-                             "WHERE id = ?")) {
-            System.out.println("Соединение установлено!");
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int idOfEmployee = resultSet.getInt("id");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
-                String gender = resultSet.getString("gender");
-                int age = resultSet.getInt("age");
-                String city = resultSet.getString("city_name");
+    //Удаление конкретного объекта Employee из базы по id
+    public static void task4(EmployeeService employeeService) {
+        System.out.println("Удаление конкретного объекта Employee из базы по id");
+        Long id = 21L;
+        employeeService.deleteById(id);
+    }
 
-                System.out.print(" id: " + idOfEmployee);
-                System.out.print(" Имя: " + firstName);
-                System.out.print(" Фамилия: " + lastName);
-                System.out.print(" Пол: " + gender);
-                System.out.print(" Возраст: " + age);
-                System.out.print(" Город: " + city);
-                System.out.println();
-            }
-        } catch (SQLException e) {
-            System.out.println("Ошибка при подключении к базе данных!");
-            e.printStackTrace();
+    //Получение списка всех объектов Employee из базы
+    public static void task5(EmployeeService employeeService) {
+        System.out.println("Получение списка всех объектов Employee из базы");
+        List<Employee> employees = employeeService.findAll();
+        System.out.println("Employees found are :");
+        for (Employee e : employees) {
+            System.out.println("-" + e.toString());
         }
-    }
-
-
-    public static void task2Part1() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        employeeDAO.addEmployee();
-    }
-
-
-    public static void task2Part2() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        List<Employee> employees = employeeDAO.getEmployeeById();
-        System.out.println(employees);
-    }
-
-
-    public static void task2Part3() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        List<Employee> employees = employeeDAO.getAllEmployees();
-        System.out.println(employees);
-    }
-
-
-    public static void task2Part4() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        employeeDAO.updateEmployee();
-    }
-
-
-    public static void task2Part5() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        employeeDAO.deleteEmployee();
     }
 }
 
