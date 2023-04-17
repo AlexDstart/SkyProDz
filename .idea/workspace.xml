@@ -4,29 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b00a6f7-798d-4c62-8966-49ce4cae2244" name="Changes" comment="DZ.Done">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hibernate/dialect/PostgresSQLDialect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/City.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/EmployeeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/CityDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/CityDAOInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/EmployeeDAOInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/CItyEnity.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/EmployeeEnity.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="0b00a6f7-798d-4c62-8966-49ce4cae2244" name="Changes" comment="DZ.Done1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/CityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/skypro/dz/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skypro/dz/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/CityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/CityDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/CityDAOInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/CityDAOInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/EmloyeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/EmloyeeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/skypro/dz/Dao/EmployeeDAOImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681206104757</updated>
       <workItem from="1681206108189" duration="4964000" />
-      <workItem from="1681224657079" duration="6899000" />
+      <workItem from="1681224657079" duration="11311000" />
     </task>
     <task id="LOCAL-00001" summary="DZ.Done">
       <created>1681226229109</created>
@@ -92,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681226229109</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="DZ.Done1">
+      <created>1681381018651</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681381018651</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +106,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="DZ.Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="DZ.Done" />
+    <MESSAGE value="DZ.Done1" />
+    <option name="LAST_COMMIT_MESSAGE" value="DZ.Done1" />
   </component>
 </project>

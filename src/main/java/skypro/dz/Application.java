@@ -2,57 +2,82 @@ package skypro.dz;
 
 
 
-import skypro.dz.Dao.EmloyeeDAO;
+
+
+import model.City;
+import model.Employee;
+import service.CityService;
+import service.EmployeeService;
 
 import java.util.List;
+
 
 public class Application {
 
     public static void main(String[] args) {
 
+        CityService cityService = new CityService();
         EmployeeService employeeService = new EmployeeService();
 
-        task1(employeeService);
-        task2(employeeService);
-        task3(employeeService);
-        task4(employeeService);
-        task5(employeeService);
+        City city = new City("Lisbon");
+
+        addNewCity(cityService, city);
+
+        Employee employee1 = new Employee("Tosh", "Simpson", "male", 33, 7L);
+        Employee employee2 = new Employee("Anna", "Bawl", "male", 50, 4L);
+        Employee employee3 = new Employee("Betty", "Trump", "female", 19, 3L);
+
+        addNewEmployee(employeeService, employee1);
+        addNewEmployee(employeeService, employee2);
+        addNewEmployee(employeeService, employee3);
+
+        updateEmployeeById(employeeService, 31L);
+
+        deleteCityById(cityService, 7L);
+
+        findAllCities(cityService);
+        findAllEmployees(employeeService);
 
     }
 
-    //Получение конкретного объекта Employee по id
-    public static void task1(EmployeeService employeeService) {
-        System.out.println("Получение конкретного объекта Employee по id");
-        Long id = 3L;
-        Employee employee = employeeService.findById(id);
-        System.out.println("Employee found with id " + id + " is =>" + employee.toString());
+
+    public static void findAllCities(CityService cityService) {
+        System.out.println("Получение списка всех объектов City из базы");
+        List<City> cities = cityService.findAll();
+        System.out.println("Cities found are :");
+        for (City c : cities) {
+            System.out.println("-" + c.toString());
+        }
     }
 
-    //Создание (добавление) сущности Employee в таблицу
-    public static void task2(EmployeeService employeeService) {
-        System.out.println("Создание (добавление) сущности Employee в таблицу");
-        Employee employee = new Employee("Peter", "O'Relly", "male", 44, 2L);
+
+    public static void addNewCity(CityService cityService, City city) {
+        System.out.println("Создание (добавление) сущности City в таблицу");
+        cityService.addNewEmployee(city);
+    }
+
+
+    public static void addNewEmployee(EmployeeService employeeService, Employee employee) {
+        System.out.println("Создание  сущности Employee в таблицу");
         employeeService.addNewEmployee(employee);
     }
 
-    //Изменение конкретного объекта Employee в базе по id
-    public static void task3(EmployeeService employeeService) {
+
+    public static void updateEmployeeById(EmployeeService employeeService, Long id) {
         System.out.println("Изменение конкретного объекта Employee в базе по id");
-        Long id = 3L;
         Employee updateEmployeeById = employeeService.findById(id);
-        updateEmployeeById.setAge(22);
+        updateEmployeeById.setCityId(6L);
         employeeService.updateById(updateEmployeeById);
     }
 
-    //Удаление конкретного объекта Employee из базы по id
-    public static void task4(EmployeeService employeeService) {
-        System.out.println("Удаление конкретного объекта Employee из базы по id");
-        Long id = 21L;
-        employeeService.deleteById(id);
+
+    public static void deleteCityById(CityService cityService, Long id) {
+        System.out.println("Удаление конкретного объекта City из базы по id");
+        cityService.deleteById(id);
     }
 
     //Получение списка всех объектов Employee из базы
-    public static void task5(EmployeeService employeeService) {
+    public static void findAllEmployees(EmployeeService employeeService) {
         System.out.println("Получение списка всех объектов Employee из базы");
         List<Employee> employees = employeeService.findAll();
         System.out.println("Employees found are :");
