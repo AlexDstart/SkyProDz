@@ -2,89 +2,88 @@ package skypro.dz;
 
 
 
-import skypro.dz.Dao.EmloyeeDAO;
-import skypro.dz.Dao.EmployeeDAOImpl;
 
-import java.sql.*;
+
+import model.City;
+import model.Employee;
+import service.CityService;
+import service.EmployeeService;
+
 import java.util.List;
 
+
 public class Application {
-    public static void main(String[] args)  {
 
+    public static void main(String[] args) {
 
+        CityService cityService = new CityService();
+        EmployeeService employeeService = new EmployeeService();
+
+        City city = new City("Lisbon");
+
+        addNewCity(cityService, city);
+
+        Employee employee1 = new Employee("Tosh", "Simpson", "male", 33, 7L);
+        Employee employee2 = new Employee("Anna", "Bawl", "male", 50, 4L);
+        Employee employee3 = new Employee("Betty", "Trump", "female", 19, 3L);
+
+        addNewEmployee(employeeService, employee1);
+        addNewEmployee(employeeService, employee2);
+        addNewEmployee(employeeService, employee3);
+
+        updateEmployeeById(employeeService, 31L);
+
+        deleteCityById(cityService, 7L);
+
+        findAllCities(cityService);
+        findAllEmployees(employeeService);
 
     }
 
 
-    public static void task1() {
-        final String user = "postgres";
-        final String password = "08051992";
-        final String url = "jdbc:postgresql://localhost:5432/skypro";
-        int id = 3;
-
-
-        try (Connection connection =
-                     DriverManager.getConnection(url, user, password);
-             PreparedStatement statement =
-                     connection.prepareStatement("SELECT id, firstname, lastname, gender, age, city_name " +
-                             "FROM employee " +
-                             "LEFT JOIN city ON employee.city_id = city.city_id " +
-                             "WHERE id = ?")) {
-            System.out.println("Соединение установлено!");
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int idOfEmployee = resultSet.getInt("id");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
-                String gender = resultSet.getString("gender");
-                int age = resultSet.getInt("age");
-                String city = resultSet.getString("city_name");
-
-                System.out.print(" id: " + idOfEmployee);
-                System.out.print(" Имя: " + firstName);
-                System.out.print(" Фамилия: " + lastName);
-                System.out.print(" Пол: " + gender);
-                System.out.print(" Возраст: " + age);
-                System.out.print(" Город: " + city);
-                System.out.println();
-            }
-        } catch (SQLException e) {
-            System.out.println("Ошибка при подключении к базе данных!");
-            e.printStackTrace();
+    public static void findAllCities(CityService cityService) {
+        System.out.println("Получение списка всех объектов City из базы");
+        List<City> cities = cityService.findAll();
+        System.out.println("Cities found are :");
+        for (City c : cities) {
+            System.out.println("-" + c.toString());
         }
     }
 
 
-    public static void task2Part1() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        employeeDAO.addEmployee();
+    public static void addNewCity(CityService cityService, City city) {
+        System.out.println("Создание (добавление) сущности City в таблицу");
+        cityService.addNewEmployee(city);
     }
 
 
-    public static void task2Part2() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        List<Employee> employees = employeeDAO.getEmployeeById();
-        System.out.println(employees);
+    public static void addNewEmployee(EmployeeService employeeService, Employee employee) {
+        System.out.println("Создание  сущности Employee в таблицу");
+        employeeService.addNewEmployee(employee);
     }
 
 
-    public static void task2Part3() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        List<Employee> employees = employeeDAO.getAllEmployees();
-        System.out.println(employees);
+    public static void updateEmployeeById(EmployeeService employeeService, Long id) {
+        System.out.println("Изменение конкретного объекта Employee в базе по id");
+        Employee updateEmployeeById = employeeService.findById(id);
+        updateEmployeeById.setCityId(6L);
+        employeeService.updateById(updateEmployeeById);
     }
 
 
-    public static void task2Part4() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        employeeDAO.updateEmployee();
+    public static void deleteCityById(CityService cityService, Long id) {
+        System.out.println("Удаление конкретного объекта City из базы по id");
+        cityService.deleteById(id);
     }
 
-
-    public static void task2Part5() {
-        EmloyeeDAO employeeDAO = new EmployeeDAOImpl();
-        employeeDAO.deleteEmployee();
+    //Получение списка всех объектов Employee из базы
+    public static void findAllEmployees(EmployeeService employeeService) {
+        System.out.println("Получение списка всех объектов Employee из базы");
+        List<Employee> employees = employeeService.findAll();
+        System.out.println("Employees found are :");
+        for (Employee e : employees) {
+            System.out.println("-" + e.toString());
+        }
     }
 }
 

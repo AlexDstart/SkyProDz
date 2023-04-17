@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="model.City">
+        <table name="city" schema="public" catalog="skypro"/>
+        <attributes>
+            <id name="cityId">
+                <column name="city_id" precision="-1"/>
+            </id>
+            <basic name="cityName">
+                <column name="city_name" length="50"/>
+            </basic>
+            <!-- <one-to-many name="employeesByCityId" mapped-by="cityByCityId" target-entity="model.Employee"/> -->
+        </attributes>
+    </entity>
+</entity-mappings>
